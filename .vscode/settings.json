@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "python.defaultInterpreterPath: /Users/hcho/opt/anaconda3/envs/samsung_oct/bin/python"
+    ]
+}
