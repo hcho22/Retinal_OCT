@@ -17,15 +17,14 @@ The Retinal OCT images can be downloaded in the following links:
 - [Mendeley Data](https://data.mendeley.com/datasets/rscbjbr9sj/2)
 
 ## Model 
-The model was created using the SimCLR (Simple Framework for Contrstive Learning) 
+The model was created using the SimCLR (Simple Framework for Contrstive Learning). Please refer to acknowledgements for additional reading.  
 ![](https://i.imgur.com/QhfGuOV.gif)
 
 ## Architecture 
 The following tools were used to setup the MLOPs pipeline:
-- Docker
-- Nginx
 - Fastapi: Main RestAPI Framework
 - AWS EC2: Deployment
+- Streamlit: Frontend UI
 
 ## Test Results
 The results from the semi-supervised learning was highly comparable to the SOTA supervised learning models. 
@@ -43,7 +42,7 @@ Semi-Supervised Learning
 | Model                     | Train Acc.  | Val Acc. | Test Acc. |
 | --------                  | --------    | -------- |-----------|
 | simCLR 1% labeled images  | 98.97%      | 93.26%   |87.5%      |
-| simCLR 10% labeled image  | 99.24%      | 93.35%   |95.97%     |
+| simCLR 10% labeled image  | 96.96%      | 93.23%   |97.10%     |
 
 
 ## Acknowledgements
