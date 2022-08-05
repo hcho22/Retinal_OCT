@@ -34,7 +34,8 @@ Supervised Learning Model
 | --------      | --------   | -------- |-----------|
 | VGG16         | 90.5%      | 89.1%    |93.1%      |
 | InceptionV3   | 71.5%      | 75.7%    |67.6%      |
-| Resnet50       | 91.7%      | 88.7%    |96.4%      |
+| Resnet50      | 91.7%      | 88.7%    |96.4%      |
+| Resnet50V2    | 93.38%     | 87.9%    |98.14%     |
 
 
 
@@ -49,3 +50,68 @@ Semi-Supervised Learning
 - [SimCLR - Google Research](https://github.com/google-research/simclr)
 - [SimCLR - Keras.io](https://keras.io/examples/vision/semisupervised_simclr/)
 
+# Retinal OCT app installation procedure via cloning Git Repository
+
+### Create new conda environment
+Create a new conda environment by running the following command. 
+
+conda create --name myenv python=3.9.2 
+
+(python version 3.9.2 was used to create the app)
+
+### Clone Samsung OCT repository
+Clone the Samsung OCT repository by running the following command.
+
+git clone git@github.com:(your profile)/Samsung_OCT.git
+
+![](https://i.imgur.com/K4JTdIG.png)
+
+### Install all the requirements
+
+cd Samsung_OCT
+pip install -U pip
+pip install -r requirements.txt
+
+
+### Activate api
+cd backend
+
+uvicorn api_ main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+
+if successful, the following outputs will appear.
+![](https://i.imgur.com/7sG8rZ4.png)
+
+
+### Activate frontend UI
+
+Run the app by typing the following command from the terminal. 
+
+cd frontend
+
+streamlit run streamlit.py
+
+browser will automatically and the app will be available locally. 
+
+![](https://i.imgur.com/BzDMT4P.png)
+
+From here you can upload your OCT scan image and the app will classify the disease (CNV, DME, or DRUSEN)
+
+![](https://i.imgur.com/knwkrU2.jpg)
+
+Uploaded image will be displayed, along with the result. 
+
+
+### Run the app on AWS EC2
+
+After launching the EC2, run the app by typing the following command from the terminal.
+
+cd backend
+uvicorn api_ main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+
+cd frontend
+streamlit run streamlit.py
+
+Network URL: http://(your ip address):8501
+External URL: http://(your ip address):8501
+
+App will launch on the External URL
