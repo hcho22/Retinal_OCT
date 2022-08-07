@@ -115,3 +115,14 @@ Network URL: http://(your ip address):8501
 External URL: http://(your ip address):8501
 
 App will launch on the External URL
+
+### Limitations
+
+Model 
+- Extensive finetuning for SimCLR model has not been performed due to time and resource. Additional epochs and batch selections will be performed during the next phase release. 
+
+Data
+- Data tends to be slightly imbalanced towards to CNV and NORMAL classes. Additional training will be performed with class weights during the next phase release.
+
+ML Pipeline
+- Full automatic deployment has not been created. Web app should be able to launch automatically with a simple script that run and starts the docker container.  
