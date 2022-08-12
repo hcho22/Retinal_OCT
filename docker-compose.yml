@@ -1,17 +1,24 @@
 version: "3"
 
 services:
-  frontend:
-    build: frontend
+  backend:
+    build: backend/
     ports:
-      - 8501:8501
+      - 8000:8000
+#    networks:
+#      - deploy_network
+    container_name: oct_backend
+
+  frontend:
+    build: frontend/
     depends_on:
       - backend
-    volumes:
-        - ./storage:/storage
-  backend:
-    build: backend
     ports:
-      - 8080:8080
-    volumes:
-      - ./storage:/storage
+      - 8501:8501
+#    networks:
+#      - deploy_network
+    container_name: oct_frontend
+
+#networks:
+#  deploy_network:
+#    driver: bridge  

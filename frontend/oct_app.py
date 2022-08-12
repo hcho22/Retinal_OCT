@@ -13,7 +13,9 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
 
-    pred = requests.post(f"http://localhost:8000/predict", files = files) # connects to backend/predict url.
+    #pred = requests.post(f"http://localhost:8000/predict", files = files) # connects to backend/predict url.
+    pred = requests.post(f"http://backend:8000/predict", files = files) # connects to backend/predict url.
+
 
     pred_path = pred.json()
     prediction = pred_path.get("Prediction") # gets the prediction class from the json file

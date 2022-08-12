@@ -21,7 +21,7 @@ def read_image(file):
 
 def model():
 	
-	model = load_model("../models/10%_simclr_semi_supervised_model_bs64.33-0.27_080222.h5",custom_objects={'RandomColorAffine': RandomColorAffine})
+	model = load_model("10%_simclr_semi_supervised_model_bs64.33-0.27_080222.h5",custom_objects={'RandomColorAffine': RandomColorAffine})
 	
 	return model
 

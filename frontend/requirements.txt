@@ -1,2 +1,4 @@
 Pillow
+requests
+requests-toolbelt
 streamlit
