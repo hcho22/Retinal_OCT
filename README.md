@@ -21,9 +21,9 @@ The model was created using the SimCLR (Simple Framework for Contrstive Learning
 ![](https://i.imgur.com/QhfGuOV.gif)
 
 ## Architecture 
-The following tools were used to setup the MLOPs pipeline:
+The following tools were used to setup the MLOPs deployment pipeline:
 - Fastapi: Main RestAPI Framework
-- AWS EC2: Deployment
+- Docker: Images and Containers
 - Streamlit: Frontend UI
 
 ## Test Results
@@ -50,7 +50,7 @@ Semi-Supervised Learning
 - [SimCLR - Google Research](https://github.com/google-research/simclr)
 - [SimCLR - Keras.io](https://keras.io/examples/vision/semisupervised_simclr/)
 
-# Retinal OCT app installation procedure via cloning Git Repository
+# Retinal OCT web app installation procedure
 
 ### Create new conda environment
 Create a new conda environment by running the following command. 
@@ -59,70 +59,51 @@ conda create --name myenv python=3.9.2
 
 (python version 3.9.2 was used to create the app)
 
-### Clone Samsung OCT repository
-Clone the Samsung OCT repository by running the following command.
+### Clone Retinal OCT repository
+Clone the Retinal OCT repository by running the following command.
 
-git clone git@github.com:(your profile)/Samsung_OCT.git
+git clone git@github.com:(your profile)/Retinal_OCT.git
 
-![](https://i.imgur.com/K4JTdIG.png)
-
-### Install all the requirements
-
-cd Samsung_OCT
-pip install -U pip
-pip install -r requirements.txt
+![](https://i.imgur.com/gem7aqh.png)
 
 
-### Activate api
-cd backend
+### To build and run docker containers
 
-uvicorn api_ main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+cd Retinal_OCT
+
+docker-compose build
 
 if successful, the following outputs will appear.
-![](https://i.imgur.com/7sG8rZ4.png)
+![](https://i.imgur.com/VohZc1i.png)
+
+docker-compose up
+
+if successful, the following output will appear.
+![](https://i.imgur.com/9a5OIQi.png)
 
 
-### Activate frontend UI
-
-Run the app by typing the following command from the terminal. 
-
-cd frontend
-
-streamlit run streamlit.py
-
-browser will automatically and the app will be available locally. 
-
-![](https://i.imgur.com/BzDMT4P.png)
-
-From here you can upload your OCT scan image and the app will classify the disease (CNV, DME, or DRUSEN)
-
-![](https://i.imgur.com/knwkrU2.jpg)
-
-Uploaded image will be displayed, along with the result. 
 
 
-### Run the app on AWS EC2
+### Testing via fastapi
 
-After launching the EC2, run the app by typing the following command from the terminal.
+User can test the model via fastapi using swaggerUI by visiting http://localhost:8000/docs
 
-cd backend
-uvicorn api_ main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+![](https://i.imgur.com/zWMuIG0.png)
 
-cd frontend
-streamlit run streamlit.py
 
-Network URL: http://(your ip address):8501
-External URL: http://(your ip address):8501
+### Testing via Streamlit
+User can also use the app using Streamlit by visiting http://localhost:8501/
 
-App will launch on the External URL
+![](https://i.imgur.com/SyLOjfJ.png)
+
+![](https://i.imgur.com/LoNkrtv.png)
+
 
 ### Limitations
 
 Model 
 - Extensive finetuning for SimCLR model has not been performed due to time and resource. Additional epochs and batch selections will be performed during the next phase release. 
 
-Data
-- Data tends to be slightly imbalanced towards to CNV and NORMAL classes. Additional training will be performed with class weights during the next phase release.
 
 ML Pipeline
-- Full automatic deployment has not been created. Web app should be able to launch automatically with a simple script that run and starts the docker container.  
+- The web app has not been deployed on a cloud such as AWS or GCP yet.  

@@ -1,25 +1,23 @@
-FROM python:3.9-slim
+# Set base image
+FROM python:3.9
 
-WORKDIR /backend
+# Set working directory
+WORKDIR /app
 
-#RUN apt-get -y update  && apt-get install -y \
-#    python3-dev \
-#    apt-utils \
-#    python-dev \
-#    build-essential \   
-#&& rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update  && apt-get install -y 
 
-#RUN pip install --no-cache-dir -U pip
-#RUN pip install --no-cache-dir -U numpy
+# Copy list of backend requirements
+COPY requirements-backend.txt requirements.txt
 
-#COPY requirements.txt .
-COPY requirements.txt /backend
-
+# Install dependencies
 RUN pip install --no-cache-dir -U -r requirements.txt
 
-COPY . /backend
+# Copy files to working directory
+COPY . /app
 
+# Expose port
 EXPOSE 8000
 
+# Execute command when container starts
 CMD ["uvicorn","api_main:app", "--host", "0.0.0.0","--port","8000"]
 

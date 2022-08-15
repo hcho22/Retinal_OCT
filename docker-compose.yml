@@ -1,24 +1,29 @@
-version: "3"
+#version: "3"
 
 services:
+  # Backend service (FastAPI)
   backend:
     build: backend/
     ports:
       - 8000:8000
-#    networks:
-#      - deploy_network
+    networks:
+      - project_network
     container_name: oct_backend
+    volumes:
+      - ./backend:/app/backend
 
+  # Frontend service (Streamlit UI)
   frontend:
     build: frontend/
     depends_on:
       - backend
     ports:
       - 8501:8501
-#    networks:
-#      - deploy_network
+    networks:
+      - project_network
     container_name: oct_frontend
+    volumes:
+      - ./frontend:/app/frontend
 
-#networks:
-#  deploy_network:
-#    driver: bridge  
+networks:
+  project_network:

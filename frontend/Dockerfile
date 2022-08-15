@@ -1,24 +1,21 @@
-FROM python:3.9-slim
+# Set base image
+FROM python:3.9
 
-WORKDIR /frontend
+# Set working directory
+WORKDIR /app
 
-#RUN apt-get -y update  && apt-get install -y \
-#    python3-dev \
-#    apt-utils \
-#    python-dev \
-#    build-essential \   
-#&& rm -rf /var/lib/apt/lists/*
+# Copy list of frontend requirements
+COPY requirements-frontend.txt requirements.txt
 
-#RUN pip install --no-cache-dir -U pip
-#RUN pip install --no-cache-dir -U numpy
-
-COPY requirements.txt /frontend
-
+# Install dependencies
 RUN pip install --no-cache-dir -U -r requirements.txt
 
-COPY . /frontend
+# Copy files to working directory
+COPY . /app
 
+# Expose port
 EXPOSE 8501
 
+# Execute command when container starts
 CMD ["streamlit","run","oct_app.py"]
 
