@@ -3,6 +3,7 @@
 services:
   # Backend service (FastAPI)
   backend:
+    image: samsung_oct_backend
     build: backend/
     ports:
       - 8000:8000
@@ -14,6 +15,7 @@ services:
 
   # Frontend service (Streamlit UI)
   frontend:
+    image: samsung_oct_frontend
     build: frontend/
     depends_on:
       - backend

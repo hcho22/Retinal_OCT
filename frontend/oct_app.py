@@ -13,20 +13,31 @@ if uploaded_file is not None:
     st.write("")
     st.write("Classifying...")
 
-    #pred = requests.post(f"http://localhost:8000/predict", files = files) # connects to backend/predict url.
-    #pred = requests.post(f"http://backend:8000/predict", files = files) # connects to backend/predict url.
-    pred = requests.post(f"http://host.docker.internal:8000/predict", files = files) # connects to backend/predict url.
-
+    #pred = requests.post(f"http://localhost:8000/predict", files = files) # connects to backend/predict url locally.
+    pred = requests.post(f"http://backend:8000/predict", files = files) # connects to backend/predict url using docker.
 
 
     pred_path = pred.json()
     prediction = pred_path.get("Prediction") # gets the prediction class from the json file
 
-    if prediction == 'CNV':
+
+    if prediction == "CNV":
         st.write("The OCT Image is classified as CNV")
+        st.write("Details:")
+        for key, value in pred_path.items():
+            st.write(key, ":", value)
     if prediction == "DME":
         st.write("The OCT Image is classified as DME")
+        st.write("Details:")
+        for key, value in pred_path.items():
+            st.write(key, ":", value)
     if prediction == "DRUSEN":
         st.write("The OCT Image is classified as DRUSEN")
+        st.write("Details:")
+        for key, value in pred_path.items():
+            st.write(key, ":", value)
     elif prediction == "NORMAL":
         st.write("The OCT Image is NORMAL")
+        st.write("Details:")
+        for key, value in pred_path.items():
+            st.write(key, ":", value)

@@ -28,10 +28,19 @@ async def predict_image(file: UploadFile = File(...)):
 
 	# make predictions
 	predictions = prediction(image_batch, model1)
-	print("Prediction: ", class_names[np.argmax(predictions[0])])
-	print(predictions[0])
 	
-	return {"Prediction": class_names[np.argmax(predictions[0])]} # returns prediction class back to the front end
+	pred_name = class_names[np.argmax(predictions[0])]
+	
+	arr = np.array(predictions[0])
+	pred_value = np.around(max(arr.tolist())*100,3)
+
+	print("Prediction: ", pred_name)
+	print("Accuracy: ", pred_value)
+
+	return {"Prediction": pred_name, 
+			"Accuracy": pred_value
+			} # returns prediction class back to the front end
+
 
 if __name__ == "__main__":
 	uvicorn.run(app, port=8000, host='0.0.0.0')

@@ -35,9 +35,6 @@ Supervised Learning Model
 | VGG16         | 90.5%      | 89.1%    |93.1%      |
 | InceptionV3   | 71.5%      | 75.7%    |67.6%      |
 | Resnet50      | 91.7%      | 88.7%    |96.4%      |
-| Resnet50V2    | 93.38%     | 87.9%    |98.14%     |
-
-
 
 Semi-Supervised Learning
 | Model                     | Train Acc.  | Val Acc. | Test Acc. |
@@ -88,15 +85,30 @@ if successful, the following output will appear.
 
 User can test the model via fastapi using swaggerUI by visiting http://localhost:8000/docs
 
-![](https://i.imgur.com/zWMuIG0.png)
+![](https://i.imgur.com/jfzLCqG.png)
+
 
 
 ### Testing via Streamlit
 User can also use the app using Streamlit by visiting http://localhost:8501/
 
-![](https://i.imgur.com/SyLOjfJ.png)
+![](https://i.imgur.com/L1JpswI.jpg)
 
-![](https://i.imgur.com/LoNkrtv.png)
+
+### Run the app on AWS EC2
+
+After launching the EC2 and git cloning the repo, run the app by typing the following commands from the terminal.
+
+cd Retinal_OCT
+
+docker-compose build
+
+docker-compose up
+
+Network URL: http://(**your ip address**):8501
+External URL: http://(**your ip address**):8501
+
+App will launch on the External URL
 
 
 ### Limitations
@@ -105,5 +117,6 @@ Model
 - Extensive finetuning for SimCLR model has not been performed due to time and resource. Additional epochs and batch selections will be performed during the next phase release. 
 
 
-ML Pipeline
-- The web app has not been deployed on a cloud such as AWS or GCP yet.  
+Prediction
+- Currently the app is predicting one image at a time. Batch prediction will be implemented during the next phase release. 
+

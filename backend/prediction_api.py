@@ -18,15 +18,14 @@ def read_image(file):
 	
 	return img_batch
 
-
 def model():
 	
-	model = load_model("10%_simclr_semi_supervised_model_bs64.33-0.27_080222.h5",custom_objects={'RandomColorAffine': RandomColorAffine})
-	
+	model = load_model("10%_simclr_semi_sup_model_full_bs64_081922.59-0.23.h5",custom_objects={'RandomColorAffine': RandomColorAffine})
+
 	return model
 
 def prediction(img, model):
 
 	result = model.predict(img)
-
+	
 	return result
